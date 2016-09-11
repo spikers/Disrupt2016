@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CurbStore</title>
+    <link href="img/favicon.ico" rel="icon" type="image" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.css"/>
+
+    <script>
+
+      window.onload = function() {
+        var output = document.getElementById("out");
+
+        if (!navigator.geolocation){
+          output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+          return;
+        }
+
+        function success(position) {
+          var latitude  = position.coords.latitude,
+              longitude = position.coords.longitude;
+          showMap(latitude, longitude);
+        };
+
+        function error() {
+          output.innerHTML = "Unable to retrieve your location";
+        };
+
+        function showMap(latitude, longitude) {
+          var mapLayer = MQ.mapLayer(),
+              map;
+
+          map = L.map('map', {
+            layers: mapLayer,
+            center: [latitude, longitude],
+            zoom: 12
+          });
+
+          output.innerHTML = "";
+        }
+
+        navigator.geolocation.getCurrentPosition(success, error);
+      }
+
+    </script>
+
+
+  </head>
+  <body>
+    <!--Nav Bar Start-->
+    <div class="container-fluid">
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <!--<img src="./img/logo.png" />-->
+          <!--<p class="navbar-text">Place</p>-->
+          <h1 class="text-center">CurbStore</h1>
+        </div>
+      </nav>
+    </div>
+    <!--Nav Bar End-->
+
+
+    <div id="map" style="width: 100%; height: 100vh; margin: 0px;"></div>
+
+    <p id="out"></p>
+
+
+  </body>
+
+    <!--<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.s/mq-map.js?key=6oe8Ou096OPV0AU89g98CFTwPJSMAL27"></script>
+
+
+</html>
