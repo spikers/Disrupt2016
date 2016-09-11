@@ -32,6 +32,7 @@
 
         function error() {
           output.innerHTML = "Unable to retrieve your location";
+          showMap(37.775935, -122.387129);
         };
 
         function showMap(latitude, longitude) {
@@ -45,7 +46,7 @@
             center: [latitude, longitude],
             zoom: 15
           });
-          
+
           var marker = L.marker([latitude, longitude]).addTo(map);
 
           output.innerHTML = "";
@@ -63,7 +64,7 @@
     <div class="web_logo_curbstore">
       <img src="./img/web_logo_curbstore.png" style="position: absolute; margin: 0px auto; left: 0px; right: 0px; z-index: 2;" />
     </div>
-    <img src="./img/web_location_pin_youarehere.png" style="position: absolute; margin: 50vh auto; top: 100; bottom: 0; left: 0; right: 0; z-index: 2; pointer-events: none;" />
+    <a href="#" onClick="click()"><img src="./img/web_location_pin_youarehere.png" class="cd-btn" style="position: absolute; margin: 50vh auto; top: 100; bottom: 0; left: 0; right: 0; z-index: 2;" /></a>
     <div id="map" style="width: 100%; height: 100vh; margin: 0px; opacity: 0.35; position: relative;"></div>
 
     <p id="out"></p>
@@ -75,39 +76,16 @@
       <div class="cd-panel-container">
         <div class="cd-panel-content">
           <img class="profile-picture" src="./img/profilepicture.png" />
-          <h2 class="username-field">JADEssert</h2>
-          <h3 class="address-line">Pier 48</h3>
-          <h3 class="address-line">San Francisco, CA</h3>
+          <h2 class="username-field">jade</h2>
 
-
+          
           <div class="sale-item-container">
             <img class="sale-item-overlay" src="./img/web_content_mask.png" />
-            <img class="buy-flag" src="./img/BuyFlag.png" />
-            <img class="sale-item-image" src="./img/waffle.png" />
+            <a href="braintree.html"><img class="buy-flag" src="./img/BuyFlag.png" /></a>
+            <img class="sale-item-image" src="./img/coke.png" />
             <div class="text-container">
-              <h4 class="product-title">Heart-Shaped Waffle</h4>
-              <h4 class="product-price">$ 4.00</h4>
-            </div>
-          </div>
-
-          <div class="sale-item-container">
-            <img class="sale-item-overlay" src="./img/web_content_mask.png" />
-            <img class="buy-flag" src="./img/BuyFlag.png" />
-            <img class="sale-item-image" src="./img/cookiemonster.png" />
-            <div class="text-container">
-              <h4 class="product-title">Cookie Monster Cake Pop</h4>
-              <h4 class="product-price">$ 4.00</h4>
-            </div>
-          </div>
-
-
-          <div class="sale-item-container">
-            <img class="sale-item-overlay" src="./img/web_content_mask.png" />
-            <img class="buy-flag" src="./img/BuyFlag.png" />
-            <img class="sale-item-image" src="./img/cheeseburgercupcakes.jpg" />
-            <div class="text-container">
-              <h4 class="product-title">Cheeseburger Cupcakes</h4>
-              <h4 class="product-price">$ 4.00</h4>
+              <h4 class="product-title">Diet Coke</h4>
+              <h4 class="product-price">$ 1.00</h4>
             </div>
           </div>
 
@@ -115,14 +93,20 @@
       </div> <!-- cd-panel-container -->
     </div> <!-- cd-panel -->
 
+    <script language="text/javascript">
+        function buy(){
+          
+        
+        }    
+    </script>
 
 
 
   </body>
-  
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
   <script src="https://www.mapquestapi.com/sdk/leaflet/v2.s/mq-map.js?key=6oe8Ou096OPV0AU89g98CFTwPJSMAL27"></script>
-  
+
   <script src="./js/jquery-2.1.1.js"></script>
   <script src="./js/main.js"></script>
   <script src="./js/modernizr.js"></script>

@@ -12,3 +12,9 @@ jQuery(document).ready(function($){
 		}
 	});
 });
+
+function click() {
+  		event.preventDefault();
+		$('.cd-panel').addClass('is-visible');
+}
+
