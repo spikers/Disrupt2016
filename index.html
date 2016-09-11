@@ -5,16 +5,19 @@
     <link href="img/favicon.ico" rel="icon" type="image" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen" />
+    <link href="css/style.css" rel="stylesheet" media="screen" />
+    <link href="css/reset.css" rel="stylesheet" media="screen" />
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.css" />
+
+
 
     <script>
-
-      //0.35 opacity
       window.onload = function() {
         var output = document.getElementById("out");
+        console.log("hi");
 
         if (!navigator.geolocation){
           output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
@@ -29,17 +32,37 @@
 
         function error() {
           output.innerHTML = "Unable to retrieve your location";
+          //Remove the following line
+          showMap(37.775670, -122.387139);
         };
 
         function showMap(latitude, longitude) {
-          var mapLayer = MQ.mapLayer(),
+
+
+          var mapLayer = MQ.satelliteLayer() //MQ.mapLayer(),
               map;
 
           map = L.map('map', {
             layers: mapLayer,
             center: [latitude, longitude],
-            zoom: 12
+            zoom: 15
           });
+
+/*          var timer;
+
+          function setTimer() {
+            timer = window.setInterval(1000, console.log("more"));
+          }
+
+          map.addEventListener("drag", function() {
+            window.clearInterval(timer);
+            timer = null;
+            setTimer();
+          });
+
+*/
+          //These markers are generic. This is where you'd probably draw in data and populate
+          var marker = L.marker([latitude, longitude]).addTo(map);
 
           output.innerHTML = "";
         }
@@ -56,11 +79,62 @@
     <!--Nav Bar End-->
 
 
-    <div id="map" style="width: 100%; height: 100vh; margin: 0px; opacity: 0.35;">
-      <h1 style="background-color: rgba(0,0,0,0); display: table; position: relative; z-index: 2; margin: auto; text-align: center;">CurbStore</h1>
+    <div class="web_logo_curbstore">
+      <img src="./img/web_logo_curbstore.png" style="position: absolute; margin: 0px auto; left: 0px; right: 0px; z-index: 2;" />
     </div>
+    <img src="./img/web_location_pin_youarehere.png" style="position: absolute; margin: 50vh auto; top: 100; bottom: 0; left: 0; right: 0; z-index: 2; pointer-events: none;" />
+    <div id="map" style="width: 100%; height: 100vh; margin: 0px; opacity: 0.35; position: relative;"></div>
 
     <p id="out"></p>
+
+
+
+    <div class="cd-panel from-right">
+
+      <div class="cd-panel-container">
+        <div class="cd-panel-content">
+          <img class="profile-picture" src="./img/profilepicture.png" />
+          <h2 class="username-field">JADEssert</h2>
+          <h3 class="address-line">Pier 48</h3>
+          <h3 class="address-line">San Francisco, CA</h3>
+
+
+          <div class="sale-item-container">
+            <img class="sale-item-overlay" src="./img/web_content_mask.png" />
+            <img class="buy-flag" src="./img/BuyFlag.png" />
+            <img class="sale-item-image" src="./img/waffle.png" />
+            <div class="text-container">
+              <h4 class="product-title">Heart-Shaped Waffle</h4>
+              <h4 class="product-price">$ 4.00</h4>
+            </div>
+          </div>
+
+          <div class="sale-item-container">
+            <img class="sale-item-overlay" src="./img/web_content_mask.png" />
+            <img class="buy-flag" src="./img/BuyFlag.png" />
+            <img class="sale-item-image" src="./img/cookiemonster.png" />
+            <div class="text-container">
+              <h4 class="product-title">Cookie Monster Cake Pop</h4>
+              <h4 class="product-price">$ 4.00</h4>
+            </div>
+          </div>
+
+
+          <div class="sale-item-container">
+            <img class="sale-item-overlay" src="./img/web_content_mask.png" />
+            <img class="buy-flag" src="./img/BuyFlag.png" />
+            <img class="sale-item-image" src="./img/cheeseburgercupcakes.jpg" />
+            <div class="text-container">
+              <h4 class="product-title">Cheeseburger Cupcakes</h4>
+              <h4 class="product-price">$ 4.00</h4>
+            </div>
+          </div>
+
+        </div> <!-- cd-panel-content -->
+      </div> <!-- cd-panel-container -->
+    </div> <!-- cd-panel -->
+
+
 
 
   </body>
@@ -69,6 +143,10 @@
     <script src="js/bootstrap.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
     <script src="https://www.mapquestapi.com/sdk/leaflet/v2.s/mq-map.js?key=6oe8Ou096OPV0AU89g98CFTwPJSMAL27"></script>
+
+    <script src="./js/jquery-2.1.1.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/modernizr.js"></script>
 
 
 </html>
