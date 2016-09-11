@@ -11,42 +11,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.5/leaflet.css"/>
 
     <script>
+var popup = L.popup();
+var geolocationMap = L.map('map', {
+    layers: MQ.mapLayer(),
+    center: [40.731701, -73.993411],
+    zoom: 12
+});
 
-      window.onload = function() {
-        var output = document.getElementById("out");
-
-        if (!navigator.geolocation){
-          output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-          return;
-        }
-
-        function success(position) {
-          var latitude  = position.coords.latitude,
-              longitude = position.coords.longitude;
-          output.innerHTML = "<p>" + latitude + "    " + longitude + "</p";
-          showMap(latitude, longitude);
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var latLng = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
         };
 
-        function error() {
-          output.innerHTML = "Unable to retrieve your location";
-        };
+        popup.setLatLng(latLng);
+        popup.setContent('This is your current location');
+        popup.openOn(geolocationMap);
 
-        function showMap(latitude, longitude) {
-          var mapLayer = MQ.mapLayer(),
-              map;
+        geolocationMap.setView(latLng);
+    }, function () {
+        geolocationErrorOccurred(true, popup, geolocationMap.getCenter());
+    });
+} else {
+    //No browser support geolocation service
+    geolocationErrorOccurred(false, popup, geolocationMap.getCenter());
+}
 
-          map = L.map('map', {
-            layers: mapLayer,
-            center: [latitude, longitude],
-            zoom: 12
-          });
-
-          output.innerHTML = "";
-        }
-
-        navigator.geolocation.getCurrentPosition(success, error);
-      }
-
+function geolocationErrorOccurred(geolocationSupported, popup, latLng) {
+    popup.setLatLng(latLng);
+    popup.setContent(geolocationSupported ?
+            '<b>Error:</b> The Geolocation service failed.' :
+            '<b>Error:</b> This browser doesn\'t support geolocation.');
+    popup.openOn(geolocationMap);
+}
     </script>
 
 
