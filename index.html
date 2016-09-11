@@ -32,8 +32,6 @@
 
         function error() {
           output.innerHTML = "Unable to retrieve your location";
-          //Remove the following line
-          showMap(37.775670, -122.387139);
         };
 
         function showMap(latitude, longitude) {
@@ -47,21 +45,7 @@
             center: [latitude, longitude],
             zoom: 15
           });
-
-/*          var timer;
-
-          function setTimer() {
-            timer = window.setInterval(1000, console.log("more"));
-          }
-
-          map.addEventListener("drag", function() {
-            window.clearInterval(timer);
-            timer = null;
-            setTimer();
-          });
-
-*/
-          //These markers are generic. This is where you'd probably draw in data and populate
+          
           var marker = L.marker([latitude, longitude]).addTo(map);
 
           output.innerHTML = "";
@@ -75,9 +59,6 @@
 
   </head>
   <body style="background-color: black;">
-    <!--Nav Bar Start-->
-    <!--Nav Bar End-->
-
 
     <div class="web_logo_curbstore">
       <img src="./img/web_logo_curbstore.png" style="position: absolute; margin: 0px auto; left: 0px; right: 0px; z-index: 2;" />
@@ -138,15 +119,13 @@
 
 
   </body>
-
-    <!--<script src="http://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
-    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.s/mq-map.js?key=6oe8Ou096OPV0AU89g98CFTwPJSMAL27"></script>
-
-    <script src="./js/jquery-2.1.1.js"></script>
-    <script src="./js/main.js"></script>
-    <script src="./js/modernizr.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+  <script src="https://www.mapquestapi.com/sdk/leaflet/v2.s/mq-map.js?key=6oe8Ou096OPV0AU89g98CFTwPJSMAL27"></script>
+  
+  <script src="./js/jquery-2.1.1.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/modernizr.js"></script>
 
 
 </html>
